@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valuation Pro - Modelo de Gordon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .card-gradient-a { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+        .card-gradient-b { background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%); }
+        input[type=range] { accent-color: #4f46e5; }
+        .trophy-anim { animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto space-y-8">
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight flex items-center justify-center gap-3">
+                <span class="text-indigo-600">⚖️</span> COMPARADOR DE VALUATION
+            </h1>
+            <p class="text-slate-500 font-medium italic">Modelo de Gordon (DGM) com Margem de Segurança</p>
+        </header>
+
+        <div id="capture-area" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:ring-2 ring-blue-500">
+                <div class="card-gradient-a p-5 text-white">
+                    <input type="text" value="Ativo A" class="bg-transparent border-none text-xl font-black uppercase text-center w-full focus:outline-none placeholder:text-white/50">
+                </div>
+                <div class="p-6 space-y-5">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Dividendo Anual (D0)</label>
+                            <input type="number" id="div-a" value="1.00" step="0.1" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 ring-blue-500 outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Crescimento (g %)</label>
+                                <input type="number" id="g-a" value="2" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Retorno (r %)</label>
+                                <input type="number" id="r-a" value="8" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] font-black uppercase text-slate-500 mb-2">
+                                <span>Margem de Segurança</span>
+                                <span id="margem-val-a" class="text-blue-600 text-sm">20%</span>
+                            </div>
+                            <input type="range" id="margem-a" min="0" max="50" step="5" value="20" class="w-full h-2 bg-slate-100 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    <div id="res-a" class="hidden pt-6 border-t space-y-4">
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <p class="text-[9px] font-bold text-slate-400 uppercase italic">Valor Justo</p>
+                                <p id="justo-a" class="text-md font-bold text-slate-700">-</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                                <p class="text-[9px] font-bold text-blue-400 uppercase italic">Yield on Cost</p>
+                                <p id="yoc-a" class="text-md font-bold text-blue-700">-</p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-blue-600 rounded-2xl text-center shadow-lg relative">
+                            <p class="text-[10px] text-white/70 font-bold uppercase tracking-[0.2em] mb-1">Preço Teto</p>
+                            <p id="teto-a" class="text-4xl font-black text-white leading-none">-</p>
+                            <div id="trophy-a" class="hidden absolute -top-3 -right-3 bg-yellow-400 text-slate-900 p-2 rounded-full shadow-xl trophy-anim text-lg">🏆</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:ring-2 ring-indigo-500">
+                <div class="card-gradient-b p-5 text-white">
+                    <input type="text" value="Ativo B" class="bg-transparent border-none text-xl font-black uppercase text-center w-full focus:outline-none placeholder:text-white/50">
+                </div>
+                <div class="p-6 space-y-5">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Dividendo Anual (D0)</label>
+                            <input type="number" id="div-b" value="1.20" step="0.1" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 ring-indigo-500 outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Crescimento (g %)</label>
+                                <input type="number" id="g-b" value="1" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 outline-none">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest italic">Retorno (r %)</label>
+                                <input type="number" id="r-b" value="8" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] font-black uppercase text-slate-500 mb-2">
+                                <span>Margem de Segurança</span>
+                                <span id="margem-val-b" class="text-indigo-600 text-sm">20%</span>
+                            </div>
+                            <input type="range" id="margem-b" min="0" max="50" step="5" value="20" class="w-full h-2 bg-slate-100 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                    <div id="res-b" class="hidden pt-6 border-t space-y-4">
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <p class="text-[9px] font-bold text-slate-400 uppercase italic">Valor Justo</p>
+                                <p id="justo-b" class="text-md font-bold text-slate-700">-</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+                                <p class="text-[9px] font-bold text-indigo-400 uppercase italic">Yield on Cost</p>
+                                <p id="yoc-b" class="text-md font-bold text-indigo-700">-</p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-indigo-700 rounded-2xl text-center shadow-lg relative">
+                            <p class="text-[10px] text-white/70 font-bold uppercase tracking-[0.2em] mb-1">Preço Teto</p>
+                            <p id="teto-b" class="text-4xl font-black text-white leading-none">-</p>
+                            <div id="trophy-b" class="hidden absolute -top-3 -right-3 bg-yellow-400 text-slate-900 p-2 rounded-full shadow-xl trophy-anim text-lg">🏆</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center py-4">
+            <button onclick="calcular()" class="bg-slate-900 hover:bg-black text-white px-16 h-14 rounded-full font-black text-lg shadow-xl transition-all active:scale-95">
+                CALCULAR COMPARATIVO
+            </button>
+            <button id="btn-export" onclick="exportar()" class="hidden border-2 border-slate-300 text-slate-600 h-14 px-8 rounded-full font-bold hover:bg-slate-100 flex items-center gap-2">
+                📥 Exportar PNG
+            </button>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+            <div class="bg-slate-800 p-4 text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                📖 Guia de Variáveis Fundamentalistas
+            </div>
+            <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-2">
+                    <h4 class="font-black text-indigo-600 text-xs uppercase italic">Crescimento (g)</h4>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Se o ativo repõe apenas a inflação, use entre <b>4% e 5%</b>. Para ativos de alto crescimento de lucro/aluguel, considere <b>6% a 8%</b>.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-black text-indigo-600 text-xs uppercase italic">Retorno Exigido (r)</h4>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Sua expectativa de ganho. A base comum é a taxa do <b>Tesouro Direto (IPCA+)</b> somada a um prêmio de risco de 2% a 4%.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-black text-indigo-600 text-xs uppercase italic">Margem de Segurança</h4>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Proteção contra erros de estimativa. <b>20%</b> é o padrão conservador. Use mais margem para ativos mais arriscados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Atualiza os labels dos sliders em tempo real
+        ['a', 'b'].forEach(id => {
+            document.getElementById(`margem-${id}`).addEventListener('input', (e) => {
+                document.getElementById(`margem-val-${id}`).innerText = `${e.target.value}%`;
+            });
+        });
+
+        function calcularAtivo(id) {
+            const div = parseFloat(document.getElementById(`div-${id}`).value);
+            const g = parseFloat(document.getElementById(`g-${id}`).value) / 100;
+            const r = parseFloat(document.getElementById(`r-${id}`).value) / 100;
+            const margem = parseFloat(document.getElementById(`margem-${id}`).value) / 100;
+
+            if (r <= g) return null;
+
+            const justo = (div * (1 + g)) / (r - g);
+            const teto = justo * (1 - margem);
+            const yoc = ((div * (1 + g)) / teto) * 100;
+
+            return { justo, teto, yoc };
+        }
+
+        function formatar(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function calcular() {
+            const resA = calcularAtivo('a');
+            const resB = calcularAtivo('b');
+
+            if (!resA || !resB) {
+                alert("Erro: A taxa de retorno deve ser maior que a de crescimento em ambos os ativos.");
+                return;
+            }
+
+            // Exibir blocos
+            document.getElementById('res-a').classList.remove('hidden');
+            document.getElementById('res-b').classList.remove('hidden');
+            document.getElementById('btn-export').classList.remove('hidden');
+
+            // Preencher valores A
+            document.getElementById('justo-a').innerText = formatar(resA.justo);
+            document.getElementById('teto-a').innerText = formatar(resA.teto);
+            document.getElementById('yoc-a').innerText = `${resA.yoc.toFixed(2)}%`;
+
+            // Preencher valores B
+            document.getElementById('justo-b').innerText = formatar(resB.justo);
+            document.getElementById('teto-b').innerText = formatar(resB.teto);
+            document.getElementById('yoc-b').innerText = `${resB.yoc.toFixed(2)}%`;
+
+            // Lógica do Troféu (Melhor Yield on Cost)
+            document.getElementById('trophy-a').classList.toggle('hidden', resA.yoc <= resB.yoc);
+            document.getElementById('trophy-b').classList.toggle('hidden', resB.yoc <= resA.yoc);
+        }
+
+        async function exportar() {
+            const element = document.getElementById('capture-area');
+            const canvas = await html2canvas(element, { scale: 2, backgroundColor: "#f8fafc" });
+            const link = document.createElement('a');
+            link.download = `Valuation_Comparativo_${new Date().toLocaleDateString()}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
