@@ -19,16 +19,17 @@
         <span class="code-bracket">{</span> CodeSystem<span>Hub</span> <span class="code-bracket">}</span>
       </div>
       <div class="nav-links">
-        <a href="#">Início</a>
-        <a href="#">Soluções</a>
-        <a href="#">Cases</a>
-        <a href="#">Contato</a>
+        <a href="#hero">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="#sistemas">Sistemas</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#contato">Contato</a>
       </div>
-      <div class="btn-outline"><i class="fas fa-terminal" style="margin-right: 8px;"></i>Área do cliente</div>
+      <a href="#contato" class="btn-outline"><i class="fas fa-terminal" style="margin-right: 8px;"></i>Área do cliente</a>
     </nav>
 
     <!-- hero section -->
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="hero-content">
         <span class="hero-badge"><i class="fas fa-cube" style="margin-right: 8px;"></i> engenharia de sistemas sob medida</span>
         <h1>
@@ -39,7 +40,7 @@
           Da concepção à implementação: criamos sistemas de gestão perfeitamente alinhados ao seu negócio. Tecnologia de ponta com a simplicidade que sua equipe merece.
         </p>
         <div class="hero-actions">
-          <span class="btn-primary"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i>Começar projeto</span>
+          <span class="btn-primary" onclick="openModal()" style="cursor: pointer;"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i>Começar projeto</span>
           <span class="btn-secondary"><i class="far fa-comment"></i> Falar com consultor</span>
         </div>
 
@@ -86,7 +87,7 @@
     </section>
 
     <!-- soluções principais -->
-    <h2 class="section-title">Soluções <span>escaláveis</span> que evoluem com você</h2>
+    <h2 class="section-title" id="solucoes">Soluções <span>escaláveis</span> que evoluem com você</h2>
     <p class="section-sub">Desenvolvemos sistemas de gestão (ERP, CRM, automação) totalmente customizados, do back-end ao front-end, integrando processos e gerando insights.</p>
 
     <div class="solutions-grid">
@@ -112,25 +113,58 @@
       </div>
     </div>
 
-    <!-- sistemas em desenvolvimento (novo) -->
-    <section style="margin: 60px 0 40px;">
-      <h2 class="section-title">Sistemas <span>em construção</span></h2>
-      <p class="section-sub">Conheça duas soluções que estamos desenvolvendo para atender necessidades específicas com a mesma qualidade e personalização.</p>
+    <!-- sistemas em destaque -->
+    <section style="margin: 60px 0 40px;" id="sistemas">
+      <h2 class="section-title">Sistemas <span>em destaque</span></h2>
+      <p class="section-sub">Conheça três aplicações já em produção e uma solução ainda em desenvolvimento no nosso portfólio.</p>
       
       <div class="systems-grid">
         <!-- card Em Ponto -->
         <div class="solution-card" style="display: flex; flex-direction: column;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <div class="icon-bg" style="margin-bottom: 0;"><i class="fas fa-fingerprint"></i></div>
-            <span class="badge-dev">EM DESENVOLVIMENTO</span>
+            <span class="badge-prod">EM PRODUÇÃO</span>
           </div>
           <h3 style="font-size: 2rem; margin-bottom: 5px;">Em Ponto</h3>
-          <p style="color: #9ba4bf; margin-bottom: 20px;">Sistema de ponto eletrônico com reconhecimento facial e painel administrativo de gestão.</p>
+          <p style="color: #9ba4bf; margin-bottom: 20px;">Aplicação pronta em produção com módulos de gestão de pessoas e marcação de ponto incorporados e integrados na mesma plataforma.</p>
           <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="tag"><i class="fas fa-camera"></i> Reconhecimento facial</span>
-            <span class="tag"><i class="fas fa-chart-line"></i> Painel adm</span>
-            <span class="tag"><i class="fas fa-clock"></i> Espelho ponto</span>
+            <span class="tag"><i class="fas fa-users"></i> Gestão de pessoas</span>
+            <span class="tag"><i class="fas fa-clock"></i> Marcação de ponto</span>
+            <span class="tag"><i class="fas fa-map-marker-alt"></i> Geolocalização</span>
           </div>
+        </div>
+
+        <!-- card ASO DATA -->
+        <div class="solution-card" style="display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div class="icon-bg" style="margin-bottom: 0;"><i class="fas fa-syringe"></i></div>
+            <span class="badge-prod">EM PRODUÇÃO</span>
+          </div>
+          <h3 style="font-size: 2rem; margin-bottom: 5px;">ASO DATA</h3>
+          <p style="color: #9ba4bf; margin-bottom: 20px;">Aplicação pronta em produção para integração de vacinas e ASOs via API, com registros automáticos e gestão segura.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+            <span class="tag"><i class="fas fa-network-wired"></i> API integrada</span>
+            <span class="tag"><i class="fas fa-syringe"></i> Controle de vacinas</span>
+            <span class="tag"><i class="fas fa-file-medical-alt"></i> ASO digital</span>
+            <span class="tag"><i class="fas fa-lock"></i> Segurança de dados</span>
+          </div>
+          <a href="https://aso-api-1btr.onrender.com/dashboard.html" target="_blank" rel="noopener" class="btn-secondary" style="margin-top: 20px; width: fit-content;">Visitar aplicação</a>
+        </div>
+
+        <!-- card Web Repport -->
+        <div class="solution-card" style="display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div class="icon-bg" style="margin-bottom: 0;"><i class="fas fa-chart-line"></i></div>
+            <span class="badge-prod">EM PRODUÇÃO</span>
+          </div>
+          <h3 style="font-size: 2rem; margin-bottom: 5px;">Web Repport</h3>
+          <p style="color: #9ba4bf; margin-bottom: 20px;">Sistema de relatórios de solicitações integrado com RM TOTVS, entregue como aplicação pronta e disponível para acesso.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+            <span class="tag"><i class="fas fa-file-alt"></i> Relatórios dinâmicos</span>
+            <span class="tag"><i class="fas fa-sync-alt"></i> Integração RM TOTVS</span>
+            <span class="tag"><i class="fas fa-globe"></i> Acesso web</span>
+          </div>
+          <a href="https://codesystem-hub.github.io/Web_Repport_IADVH/login.html" target="_blank" rel="noopener" class="btn-secondary" style="margin-top: 20px; width: fit-content;">Visitar aplicação</a>
         </div>
 
         <!-- card CliniFlow -->
@@ -153,6 +187,105 @@
       <p style="text-align: center; margin-top: 30px; color: #7f8aa8;">
         <i class="fas fa-flask"></i> Esses e outros sistemas estão em fase de desenvolvimento — entre em contato para saber mais ou ser um parceiro de testes.
       </p>
+    </section>
+
+    <!-- tecnologias e características -->
+    <section style="margin: 80px 0 60px;">
+      <h2 class="section-title">Tecnologia <span>na prática</span></h2>
+      <p class="section-sub">Todas as nossas aplicações são desenvolvidas como web, garantindo acessibilidade, escalabilidade e segurança. Utilizamos as melhores práticas de mercado.</p>
+      
+      <div style="background: rgba(108, 140, 255, 0.05); border: 1px solid rgba(108, 140, 255, 0.15); border-radius: 32px; padding: 48px 40px; margin: 40px 0;">
+        <div class="tech-carousel">
+          <div class="tech-track">
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-python"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Python</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Back-end robusto e escalável</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-react"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">React</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Interfaces dinâmicas e responsivas</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fas fa-arrow-right-long"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Next.js</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Aplicações web otimizadas</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-js-square"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">JavaScript</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Front-end interativo e fluido</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-java"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Java</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Processamento empresarial</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fas fa-database"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">MySQL</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Bancos de dados confiáveis</p>
+            </div>
+            <!-- Duplicação para efeito infinito -->
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-python"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Python</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Back-end robusto e escalável</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-react"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">React</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Interfaces dinâmicas e responsivas</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fas fa-arrow-right-long"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Next.js</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Aplicações web otimizadas</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-js-square"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">JavaScript</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Front-end interativo e fluido</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fab fa-java"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">Java</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Processamento empresarial</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0; width: 200px;">
+              <div style="font-size: 2rem; color: #6c8cff; margin-bottom: 12px;"><i class="fas fa-database"></i></div>
+              <h4 style="color: #e3e8ee; margin-bottom: 8px;">MySQL</h4>
+              <p style="color: #8e98b3; font-size: 0.95rem;">Bancos de dados confiáveis</p>
+            </div>
+          </div>
+        </div>
+        <p style="text-align: center; color: #9aa4bf; margin-top: 30px;">
+          <i class="fas fa-check-circle" style="color: #4ade80; margin-right: 8px;"></i> Todas as aplicações são web • Requisitos específicos negociados com o cliente • Suporte e manutenção contínua
+        </p>
+      </div>
+    </section>
+
+    <!-- parceiros -->
+    <section style="margin: 80px 0 60px;" id="parceiros">
+      <h2 class="section-title">Parceiros <span>de confiança</span></h2>
+      <p class="section-sub">Trabalhamos em parceria com empresas de referência para oferecer soluções completas e integradas aos nossos clientes.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin: 60px 0;">
+        <div style="background: rgba(18, 22, 32, 0.7); border: 1px solid rgba(108, 140, 255, 0.2); border-radius: 24px; padding: 40px 30px; text-align: center; backdrop-filter: blur(10px);">
+          <div style="margin-bottom: 20px;"><img src="iadvh logo.png" alt="IADVH Logo" style="width: 80px; height: 80px; object-fit: contain;"></div>
+          <h3 style="color: #e3e8ee; margin-bottom: 12px; font-size: 1.5rem;">IADVH</h3>
+          <p style="color: #9aa4bf; margin-bottom: 25px; font-size: 1rem;">Instituto de Apoio ao Desenvolvimento da Vida Humana</p>
+          <a href="https://iadvh.org.br/" target="_blank" rel="noopener" class="btn-secondary" style="display: inline-block;">Visitar site</a>
+        </div>
+        
+        <div style="background: rgba(18, 22, 32, 0.7); border: 1px solid rgba(108, 140, 255, 0.2); border-radius: 24px; padding: 40px 30px; text-align: center; backdrop-filter: blur(10px);">
+          <div style="margin-bottom: 20px;"><img src="vox-ambiental-logo.gif" alt="VOX Ambiental Logo" style="width: 80px; height: 80px; object-fit: contain;"></div>
+          <h3 style="color: #e3e8ee; margin-bottom: 12px; font-size: 1.5rem;">VOX Ambiental</h3>
+          <p style="color: #9aa4bf; margin-bottom: 25px; font-size: 1rem;">Soluções ambientais e sustentabilidade</p>
+          <a href="https://voxambiental.com.br/" target="_blank" rel="noopener" class="btn-secondary" style="display: inline-block;">Visitar site</a>
+        </div>
+      </div>
     </section>
 
     <!-- fluxo de trabalho / diferencial -->
@@ -184,11 +317,90 @@
     </div>
 
     <!-- CTA e contato -->
-    <div class="cta-section">
+    <div id="contato" class="cta-section">
       <h2>Pronto para <span class="gradient-text">transformar</span> sua gestão?</h2>
       <p style="font-size: 1.3rem; color: #b7c2dd; max-width: 650px; margin: 0 auto;">Sistemas que se adaptam a você — e não o contrário.</p>
-      <span class="btn-primary"><i class="fas fa-pen"></i> Solicitar diagnóstico gratuito</span>
+      <span class="btn-primary" onclick="openModal()" style="cursor: pointer;"><i class="fas fa-pen"></i> Solicitar diagnóstico gratuito</span>
       <p style="margin-top: 40px; color: #586282;"><i class="fas fa-shield-alt"></i>  Atendimento personalizado · sem fidelidade técnica</p>
+    </div>
+
+    <!-- Modal Diagnóstico Gratuito -->
+    <div id="diagnosticModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h2 style="color: #e3e8ee; margin-bottom: 30px;">Solicite seu <span class="gradient-text">diagnóstico gratuito</span></h2>
+        
+        <form action="https://formsubmit.co/codesystemhub@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 20px;" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Nova solicitação de diagnóstico gratuito - CodeSystemHub">
+          
+          <!-- Nome -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 8px; font-weight: 500;">Nome da Empresa *</label>
+            <input type="text" name="empresa" required placeholder="Sua empresa" style="width: 100%; padding: 12px 16px; background: rgba(108, 140, 255, 0.1); border: 1px solid rgba(108, 140, 255, 0.3); border-radius: 12px; color: #e3e8ee; font-family: Inter; font-size: 1rem;">
+          </div>
+          
+          <!-- Contato -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 8px; font-weight: 500;">Nome do Contato *</label>
+            <input type="text" name="contato" required placeholder="Seu nome" style="width: 100%; padding: 12px 16px; background: rgba(108, 140, 255, 0.1); border: 1px solid rgba(108, 140, 255, 0.3); border-radius: 12px; color: #e3e8ee; font-family: Inter; font-size: 1rem;">
+          </div>
+          
+          <!-- Email -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 8px; font-weight: 500;">Email *</label>
+            <input type="email" name="email" required placeholder="seu@email.com" style="width: 100%; padding: 12px 16px; background: rgba(108, 140, 255, 0.1); border: 1px solid rgba(108, 140, 255, 0.3); border-radius: 12px; color: #e3e8ee; font-family: Inter; font-size: 1rem;">
+          </div>
+          
+          <!-- CNPJ -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 8px; font-weight: 500;">CNPJ</label>
+            <input type="text" name="cnpj" placeholder="00.000.000/0000-00" style="width: 100%; padding: 12px 16px; background: rgba(108, 140, 255, 0.1); border: 1px solid rgba(108, 140, 255, 0.3); border-radius: 12px; color: #e3e8ee; font-family: Inter; font-size: 1rem;">
+          </div>
+          
+          <!-- Serviços -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 12px; font-weight: 500;">Serviços de Interesse *</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="ERP modular" style="width: 18px; height: 18px; cursor: pointer;"> ERP modular
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Business Intelligence" style="width: 18px; height: 18px; cursor: pointer;"> BI
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Integração API-first" style="width: 18px; height: 18px; cursor: pointer;"> Integração API
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Apps corporativos" style="width: 18px; height: 18px; cursor: pointer;"> Apps corporativos
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Em Ponto" style="width: 18px; height: 18px; cursor: pointer;"> Em Ponto
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="ASO DATA" style="width: 18px; height: 18px; cursor: pointer;"> ASO DATA
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Web Repport" style="width: 18px; height: 18px; cursor: pointer;"> Web Repport
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #9aa4bf;">
+                <input type="checkbox" name="servicos" value="Serviço personalizado" style="width: 18px; height: 18px; cursor: pointer;"> Personalizado
+              </label>
+            </div>
+          </div>
+          
+          <!-- Descrição -->
+          <div>
+            <label style="color: #b0b9d0; display: block; margin-bottom: 8px; font-weight: 500;">Descreva sua necessidade *</label>
+            <textarea name="descricao" required placeholder="Conte-nos sobre os desafios e objetivos da sua empresa..." style="width: 100%; padding: 12px 16px; background: rgba(108, 140, 255, 0.1); border: 1px solid rgba(108, 140, 255, 0.3); border-radius: 12px; color: #e3e8ee; font-family: Inter; font-size: 1rem; min-height: 120px; resize: vertical;"></textarea>
+          </div>
+          
+          <!-- Botão Enviar -->
+          <button type="submit" class="btn-primary" style="width: 100%; border: none; margin-top: 20px; cursor: pointer; text-align: center; justify-content: center; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-paper-plane"></i> Enviar solicitação
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- footer -->
@@ -231,5 +443,67 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("diagnosticModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("diagnosticModal").style.display = "none";
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      fetch("https://formsubmit.co/codesystemhub@gmail.com", {
+        method: "POST",
+        body: formData
+      }).then(() => {
+        showThankYou();
+      }).catch(error => {
+        console.error("Erro ao enviar:", error);
+      });
+    }
+
+    function showThankYou() {
+      document.getElementById("diagnosticModal").innerHTML = `
+        <div class="modal-content" style="text-align: center;">
+          <div style="font-size: 60px; color: #4ade80; margin-bottom: 20px;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2 style="color: #e3e8ee; margin-bottom: 15px;">Obrigado pela sua solicitação!</h2>
+          <p style="color: #9aa4bf; margin-bottom: 30px; line-height: 1.6;">
+            Recebemos seu formulário com sucesso. Nossa equipe analisará sua solicitação e entrará em contato em breve para discutir as melhores soluções para sua empresa.
+          </p>
+          <p style="color: #7f8aa8; margin-bottom: 30px; font-size: 0.95rem;">
+            <i class="fas fa-envelope" style="margin-right: 8px;"></i> Você receberá um email de confirmação em breve.
+          </p>
+          <span class="btn-primary" onclick="redirectHome()" style="cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fas fa-home"></i> Voltar ao início
+          </span>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        redirectHome();
+      }, 5000);
+    }
+
+    function redirectHome() {
+      closeModal();
+      window.scrollTo(0, 0);
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("diagnosticModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>

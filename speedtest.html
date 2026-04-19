@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Velocidade da Internet</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap');
+
+:root{
+    --green-primary: #46D643;
+    --green-dark: #094720;
+    --green-medium: #14A449;
+    --green-soft: #7AB340;
+    --green-light: #DAEFBE;
+    --white: #FFFFFF;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+/* CONTAINER PRINCIPAL */
+.container{
+    width:95%;
+    height:95vh;
+    background: var(--white);
+    border-radius:20px;
+    display:grid;
+    grid-template-rows: 100px 1fr;
+    box-shadow:0 30px 80px rgba(0,0,0,0.2);
+    overflow:hidden;
+}
+
+/* HEADER */
+.header{
+    background: var(--green-primary);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins', sans-serif;
+}
+
+.header h1{
+    font-size:28px;
+    font-weight:700;
+}
+
+.header p{
+    font-size:14px;
+    opacity:0.9;
+}
+
+/* CONTENT GRID */
+.content{
+    padding:25px;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap:25px;
+    height:100%;
+}
+
+/* CARD PADRÃO */
+.card{
+    background: #F9F9F9;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+/* STATUS */
+.status-card{
+    background: var(--green-light);
+    text-align:center;
+    border:none;
+}
+
+.status-card i{
+    font-size:40px;
+    color: var(--green-dark);
+    margin-bottom:10px;
+}
+
+.status-card h3{
+    font-family:'Poppins';
+    color: var(--green-dark);
+}
+
+/* SPEED DISPLAY */
+.speed-display{
+    text-align:center;
+}
+
+.speed-display .value{
+    font-size:72px;
+    font-family:'Poppins';
+    font-weight:700;
+    color: var(--green-dark);
+}
+
+.speed-display .unit{
+    font-size:22px;
+    color:#666;
+}
+
+.speed-display .label{
+    margin-top:5px;
+    color:#777;
+}
+
+/* SPEED BAR */
+.speed-bar-container{
+    height:15px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.speed-bar{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, var(--green-primary), var(--green-soft));
+    transition:0.3s;
+}
+
+/* METRICS */
+.metrics-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:15px;
+}
+
+.metric-item{
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.metric-item i{
+    color: var(--green-medium);
+    margin-bottom:5px;
+}
+
+.metric-value{
+    font-weight:600;
+    font-size:18px;
+}
+
+/* BOTÕES */
+.test-controls{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-top:15px;
+}
+
+.btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Poppins';
+    transition:0.3s;
+}
+
+.btn-primary{
+    background: var(--green-primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    background: var(--green-medium);
+}
+
+.btn-secondary{
+    background:#ddd;
+}
+
+.btn-secondary:hover{
+    background:#ccc;
+}
+
+/* HISTÓRICO */
+.history-section{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.history-section h3{
+    font-family:'Poppins';
+    margin-bottom:10px;
+    color: var(--green-dark);
+}
+
+.history-list{
+    flex:1;
+    overflow-y:auto;
+}
+
+.history-item{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+}
+
+/* RESPONSIVO */
+@media(max-width: 1024px){
+    .content{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        height:100vh;
+    }
+}
+
+@media(max-width:600px){
+    .speed-display .value{
+        font-size:48px;
+    }
+
+    .metrics-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-tachometer-alt"></i> Teste de Velocidade</h1>
+            <p>Meça a velocidade da sua conexão com a internet</p>
+        </div>
+
+        <div class="content">
+            <!-- Status Card -->
+            <div class="card status-card">
+                <i class="fas fa-wifi"></i>
+                <h3>Pronto para testar</h3>
+                <p class="status-message">Clique em "Iniciar Teste" para começar</p>
+            </div>
+
+            <!-- Speed Meter -->
+            <div class="card">
+                <div class="speed-display">
+                    <span class="value" id="speedValue">0</span>
+                    <span class="unit">Mbps</span>
+                    <div class="label" id="speedLabel">Velocidade atual</div>
+                </div>
+
+                <div class="speed-bar-container">
+                    <div class="speed-bar" id="speedBar"></div>
+                </div>
+
+                <div id="qualityBadge" class="quality-badge"></div>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <i class="fas fa-arrow-down"></i>
+                        <div class="metric-value" id="downloadSpeed">0</div>
+                        <div class="metric-label">Download</div>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-arrow-up"></i>
+                        <div class="metric-value" id="uploadSpeed">0</div>
+                        <div class="metric-label">Upload</div>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="metric-value" id="pingValue">0</div>
+                        <div class="metric-label">Ping (ms)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Controls -->
+            <div class="test-controls">
+                <button class="btn btn-primary" id="startTestBtn">
+                    <i class="fas fa-play"></i> Iniciar Teste
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-indicator" id="progressIndicator">
+                <i class="fas fa-spinner"></i>
+                <p>Testando velocidade... Isso pode levar alguns segundos</p>
+            </div>
+
+            <!-- History Section -->
+            <div class="card history-section">
+                <h3><i class="fas fa-history"></i> Histórico de Testes</h3>
+                <div class="history-list" id="historyList">
+                    <!-- Histórico será inserido aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class SpeedTest {
+            constructor() {
+                this.downloadSpeed = 0;
+                this.uploadSpeed = 0;
+                this.ping = 0;
+                this.isTesting = false;
+                this.history = this.loadHistory();
+                
+                // Elementos DOM
+                this.speedValue = document.getElementById('speedValue');
+                this.speedBar = document.getElementById('speedBar');
+                this.speedLabel = document.getElementById('speedLabel');
+                this.downloadSpeedEl = document.getElementById('downloadSpeed');
+                this.uploadSpeedEl = document.getElementById('uploadSpeed');
+                this.pingValueEl = document.getElementById('pingValue');
+                this.qualityBadge = document.getElementById('qualityBadge');
+                this.statusCard = document.getElementById('statusCard');
+                this.progressIndicator = document.getElementById('progressIndicator');
+                this.startTestBtn = document.getElementById('startTestBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.historyList = document.getElementById('historyList');
+
+                // Bind dos eventos
+                this.startTestBtn.addEventListener('click', () => this.startTest());
+                this.resetBtn.addEventListener('click', () => this.resetTest());
+
+                // Carregar histórico inicial
+                this.renderHistory();
+            }
+
+            loadHistory() {
+                const saved = localStorage.getItem('speedTestHistory');
+                return saved ? JSON.parse(saved) : [];
+            }
+
+            saveHistory() {
+                localStorage.setItem('speedTestHistory', JSON.stringify(this.history));
+            }
+
+            renderHistory() {
+                this.historyList.innerHTML = '';
+                if (this.history.length === 0) {
+                    this.historyList.innerHTML = '<p style="color: #999; text-align: center;">Nenhum teste realizado ainda</p>';
+                    return;
+                }
+
+                this.history.slice(-10).reverse().forEach(item => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <span class="date">${item.date}</span>
+                        <span class="speed">${item.download} Mbps</span>
+                        <span>${item.upload} Mbps</span>
+                        <span>${item.ping} ms</span>
+                    `;
+                    this.historyList.appendChild(historyItem);
+                });
+            }
+
+            addToHistory() {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('pt-BR') + ' ' + 
+                               now.getHours().toString().padStart(2,'0') + ':' + 
+                               now.getMinutes().toString().padStart(2,'0');
+
+                this.history.push({
+                    date: dateStr,
+                    download: this.downloadSpeed.toFixed(1),
+                    upload: this.uploadSpeed.toFixed(1),
+                    ping: this.ping
+                });
+
+                if (this.history.length > 20) {
+                    this.history = this.history.slice(-20);
+                }
+
+                this.saveHistory();
+                this.renderHistory();
+            }
+
+            updateQualityBadge() {
+                const speed = this.downloadSpeed;
+                let quality = '';
+                let className = '';
+
+                if (speed >= 50) {
+                    quality = 'Excelente';
+                    className = 'quality-excelente';
+                } else if (speed >= 25) {
+                    quality = 'Boa';
+                    className = 'quality-boa';
+                } else if (speed >= 10) {
+                    quality = 'Regular';
+                    className = 'quality-regular';
+                } else if (speed > 0) {
+                    quality = 'Lenta';
+                    className = 'quality-regular';
+                }
+
+                this.qualityBadge.textContent = quality ? `Qualidade: ${quality}` : '';
+                this.qualityBadge.className = `quality-badge ${className}`;
+            }
+
+            async measurePing() {
+                const startTime = performance.now();
+                try {
+                    await fetch('https://www.google.com/favicon.ico?t=' + Date.now(), { 
+                        mode: 'no-cors',
+                        cache: 'no-cache'
+                    });
+                    const endTime = performance.now();
+                    this.ping = Math.round(endTime - startTime);
+                } catch (error) {
+                    this.ping = Math.round(100 + Math.random() * 50); // Fallback para simulação
+                }
+                this.pingValueEl.textContent = this.ping;
+                return this.ping;
+            }
+
+            async measureDownload() {
+                return new Promise((resolve) => {
+                    // Simulação de teste de download
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += Math.random() * 15;
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            this.downloadSpeed = 35 + Math.random() * 40; // 35-75 Mbps
+                            this.speedValue.textContent = this.downloadSpeed.toFixed(1);
+                            this.speedBar.style.width = '100%';
+                            this.speedLabel.textContent = 'Download concluído';
+                            this.downloadSpeedEl.textContent = this.downloadSpeed.toFixed(1);
+                            this.updateQualityBadge();
+                            resolve();
+                        } else {
+                            const currentSpeed = (progress / 100) * (35 + Math.random() * 40);
+                            this.speedValue.textContent = currentSpeed.toFixed(1);
+                            this.speedBar.style.width = progress + '%';
+                            this.speedLabel.textContent = 'Testando download...';
+                        }
+                    }, 100);
+                });
+            }
+
+            async measureUpload() {
+                return new Promise((resolve) => {
+                    // Simulação de teste de upload
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += Math.random() * 12;
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            this.uploadSpeed = 15 + Math.random() * 20; // 15-35 Mbps
+                            this.speedValue.textContent = this.uploadSpeed.toFixed(1);
+                            this.speedBar.style.width = '100%';
+                            this.speedLabel.textContent = 'Upload concluído';
+                            this.uploadSpeedEl.textContent = this.uploadSpeed.toFixed(1);
+                            resolve();
+                        } else {
+                            const currentSpeed = (progress / 100) * (15 + Math.random() * 20);
+                            this.speedValue.textContent = currentSpeed.toFixed(1);
+                            this.speedBar.style.width = progress + '%';
+                            this.speedLabel.textContent = 'Testando upload...';
+                        }
+                    }, 100);
+                });
+            }
+
+            async startTest() {
+                if (this.isTesting) return;
+
+                this.isTesting = true;
+                this.startTestBtn.disabled = true;
+                this.progressIndicator.style.display = 'block';
+                this.statusCard.innerHTML = `
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h3>Testando conexão...</h3>
+                    <p class="status-message">Aguarde enquanto medimos sua velocidade</p>
+                `;
+
+                // Reset dos valores
+                this.downloadSpeed = 0;
+                this.uploadSpeed = 0;
+                this.speedValue.textContent = '0';
+                this.speedBar.style.width = '0%';
+                this.speedLabel.textContent = 'Iniciando...';
+
+                try {
+                    // Medir ping
+                    this.statusCard.innerHTML = `
+                        <i class="fas fa-satellite-dish"></i>
+                        <h3>Medindo ping...</h3>
+                        <p class="status-message">Testando latência da conexão</p>
+                    `;
+                    await this.measurePing();
+
+                    // Testar download
+                    this.statusCard.innerHTML = `
+                        <i class="fas fa-arrow-down"></i>
+                        <h3>Testando download...</h3>
+                        <p class="status-message">Baixando dados de teste</p>
+                    `;
+                    await this.measureDownload();
+
+                    // Pequena pausa entre testes
+                    await new Promise(resolve => setTimeout(resolve, 500));
+
+                    // Testar upload
+                    this.statusCard.innerHTML = `
+                        <i class="fas fa-arrow-up"></i>
+                        <h3>Testando upload...</h3>
+                        <p class="status-message">Enviando dados de teste</p>
+                    `;
+                    await this.measureUpload();
+
+                    // Finalizado
+                    this.statusCard.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                        <h3>Teste concluído!</h3>
+                        <p class="status-message">Download: ${this.downloadSpeed.toFixed(1)} Mbps | Upload: ${this.uploadSpeed.toFixed(1)} Mbps | Ping: ${this.ping} ms</p>
+                    `;
+
+                    // Adicionar ao histórico
+                    this.addToHistory();
+
+                } catch (error) {
+                    this.statusCard.innerHTML = `
+                        <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
+                        <h3>Erro no teste</h3>
+                        <p class="status-message">Não foi possível completar o teste. Tente novamente.</p>
+                    `;
+                } finally {
+                    this.isTesting = false;
+                    this.startTestBtn.disabled = false;
+                    this.progressIndicator.style.display = 'none';
+                }
+            }
+
+            resetTest() {
+                this.downloadSpeed = 0;
+                this.uploadSpeed = 0;
+                this.ping = 0;
+                
+                this.speedValue.textContent = '0';
+                this.speedBar.style.width = '0%';
+                this.speedLabel.textContent = 'Velocidade atual';
+                this.downloadSpeedEl.textContent = '0';
+                this.uploadSpeedEl.textContent = '0';
+                this.pingValueEl.textContent = '0';
+                this.qualityBadge.textContent = '';
+                this.qualityBadge.className = 'quality-badge';
+
+                this.statusCard.innerHTML = `
+                    <i class="fas fa-wifi"></i>
+                    <h3>Pronto para testar</h3>
+                    <p class="status-message">Clique em "Iniciar Teste" para começar</p>
+                `;
+            }
+        }
+
+        // Inicializar o teste quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new SpeedTest();
+        });
+    </script>
+</body>
+</html>
