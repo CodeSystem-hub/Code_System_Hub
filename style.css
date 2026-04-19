@@ -651,12 +651,30 @@
 
 .tech-track {
   display: flex;
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 40s linear infinite;
   gap: 30px;
+  transition: animation 0.3s ease;
 }
 
 .tech-track:hover {
   animation-play-state: paused;
+}
+
+.tech-track > div {
+  transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.tech-track > div:hover {
+  background: rgba(108, 140, 255, 0.1);
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 15px 35px rgba(108, 140, 255, 0.2);
+}
+
+.tech-track > div:hover i {
+  animation: bounce 0.5s ease infinite;
 }
 
 @keyframes scroll-left {
@@ -665,6 +683,15 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
