@@ -435,6 +435,211 @@
       .hero h1 .gradient-text { font-size: 2.8rem; }
       .workflow { padding: 40px 20px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-actions { flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 16px 0;
+      }
+      
+      .logo {
+        font-size: 1.4rem;
+      }
+      
+      .nav-links {
+        gap: 15px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .btn-outline {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+      }
+      
+      .hero {
+        padding: 40px 0 60px;
+        gap: 30px;
+      }
+      
+      .hero-content {
+        flex: 1 1 100%;
+      }
+      
+      .hero-visual {
+        flex: 1 1 100%;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero h1 .gradient-text {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-sub {
+        font-size: 1rem;
+      }
+      
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .systems-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-visual {
+        padding: 20px 15px;
+      }
+      
+      .code-card {
+        padding: 16px;
+      }
+      
+      .code-line {
+        font-size: 0.8rem;
+        margin: 10px 0;
+      }
+      
+      .workflow {
+        padding: 40px 20px;
+        border-radius: 40px;
+        margin: 40px 0;
+      }
+      
+      .workflow h2 {
+        font-size: 1.6rem;
+      }
+      
+      .steps {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .step {
+        flex: 1 1 100%;
+      }
+      
+      .cta-section {
+        padding: 40px 20px;
+        border-radius: 40px;
+      }
+      
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .cta-section .btn-primary {
+        padding: 14px 30px;
+        font-size: 1rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .container {
+        padding: 0 16px;
+      }
+      
+      .tech-track {
+        gap: 15px;
+      }
+      
+      .tech-track > div {
+        width: 160px !important;
+      }
+      
+      .tech-track > div h4 {
+        font-size: 0.9rem;
+      }
+      
+      .tech-track > div p {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .navbar {
+        gap: 10px;
+      }
+      
+      .logo {
+        font-size: 1.2rem;
+      }
+      
+      .nav-links {
+        gap: 10px;
+        font-size: 0.8rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      
+      .hero h1 .gradient-text {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 0.9rem;
+      }
+      
+      .hero-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .solution-card h3 {
+        font-size: 1.3rem;
+      }
+      
+      .solution-card p {
+        font-size: 0.9rem;
+      }
+      
+      .stat-value {
+        font-size: 1.4rem;
+      }
+      
+      .code-line {
+        font-size: 0.75rem;
+      }
     }
 
 /* Carrossel de tecnologias */
@@ -537,5 +742,63 @@
     top: 15px;
     right: 15px;
     font-size: 28px;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .modal label {
+    font-size: 0.95rem;
+  }
+  
+  .modal input[type="text"],
+  .modal input[type="email"],
+  .modal textarea {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+  
+  .modal button {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-content {
+    padding: 20px 16px;
+    border-radius: 16px;
+    width: 95%;
+  }
+  
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .modal label {
+    font-size: 0.9rem;
+  }
+  
+  .modal input[type="text"],
+  .modal input[type="email"],
+  .modal textarea {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .modal button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .modal > div:nth-child(n+2) {
+    margin-top: 12px;
   }
 }
